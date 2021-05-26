@@ -1,0 +1,187 @@
+root@raspberrypi:/home# insmod usb_led.ko                                       
+[  593.578539] usbcore: registered new interface driver usbled                  
+root@raspberrypi:/home# [  598.769044] usb 1-1.3: new full-speed USB device numb
+er 5 using dwc_otg                                                              
+[  598.902095] usb 1-1.3: New USB device found, idVendor=04d8, idProduct=003f, b
+cdDevice= 1.00                                                                  
+[  598.910633] usb 1-1.3: New USB device strings: Mfr=1, Product=2, SerialNumber
+=0                                                                              
+[  598.918081] usb 1-1.3: Product: LED_USB HID Demo                             
+[  598.922822] usb 1-1.3: Manufacturer: Microchip Technology Inc.               
+[  598.933296] usbled 1-1.3:1.0: led_probe() function is called.                
+                                                                                
+root@raspberrypi:/home# cd /sys/bus/usb/devices/1-1.3:1.0                       
+root@raspberrypi:/sys/bus/usb/devices/1-1.3:1.0# ls                             
+authorized         bInterfaceProtocol  ep_01     power                          
+bAlternateSetting  bInterfaceSubClass  ep_81     subsystem                      
+bInterfaceClass    bNumEndpoints       led       supports_autosuspend           
+bInterfaceNumber   driver              modalias  uevent                         
+root@raspberrypi:/sys/bus/usb/devices/1-1.3:1.0# echo 1 > led                   
+[  639.509496] usbled 1-1.3:1.0: led_store() function is called.                
+[  639.515348] usb 1-1.3: led = 1                                               
+root@raspberrypi:/sys/bus/usb/devices/1-1.3:1.0# echo 0 > led                   
+[  648.829357] usbled 1-1.3:1.0: led_store() function is called.                
+[  648.835208] usb 1-1.3: unknown led 0                                         
+bash: echo: error de escritura: Argumento inválido                              
+root@raspberrypi:/sys/bus/usb/devices/1-1.3:1.0# echo 1 > led                   
+[  655.329367] usbled 1-1.3:1.0: led_store() function is called.                
+[  655.335219] usb 1-1.3: led = 1                                               
+root@raspberrypi:/sys/bus/usb/devices/1-1.3:1.0# echo 2 > led                   
+[  671.319407] usbled 1-1.3:1.0: led_store() function is called.                
+[  671.325260] usb 1-1.3: led = 2                                               
+root@raspberrypi:/sys/bus/usb/devices/1-1.3:1.0# echo 2 > led                   
+[  674.429377] usbled 1-1.3:1.0: led_store() function is called.                
+[  674.435228] usb 1-1.3: led = 2                                               
+root@raspberrypi:/sys/bus/usb/devices/1-1.3:1.0# echo 3 > led                   
+[  692.449369] usbled 1-1.3:1.0: led_store() function is called.                
+[  692.455222] usb 1-1.3: led = 3                                               
+root@raspberrypi:/sys/bus/usb/devices/1-1.3:1.0# echo 3 > led                   
+[  696.159388] usbled 1-1.3:1.0: led_store() function is called.                
+[  696.165241] usb 1-1.3: led = 3                                               
+root@raspberrypi:/sys/bus/usb/devices/1-1.3:1.0# echo 1 > led                   
+[  703.089394] usbled 1-1.3:1.0: led_store() function is called.                
+[  703.095246] usb 1-1.3: led = 1                                               
+root@raspberrypi:/sys/bus/usb/devices/1-1.3:1.0# cd /home/                      
+root@raspberrypi:/home# rmmod usb_led.ko                                        
+[  715.063311] usbcore: deregistering interface driver usbled                   
+[  715.069066] usbled 1-1.3:1.0: USB LED now disconnected                       
+root@raspberrypi:/home# 
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent               
+permitted by applicable law.                                                    
+pi@raspberrypi:~$ su                                                            
+Contraseña:                                                                     
+root@raspberrypi:/home/pi# cd /home/                                            
+root@raspberrypi:/home# insmod usb_urb_int_led.ko                               
+[   65.277664] usb_urb_int_led: loading out-of-tree module taints kernel.       
+[   65.290874] usbcore: registered new interface driver usbled                  
+root@raspberrypi:/home# [   69.869058] usb 1-1.3: new full-speed USB device numb
+er 4 using dwc_otg                                                              
+[   70.002044] usb 1-1.3: New USB device found, idVendor=04d8, idProduct=003f, b
+cdDevice= 1.00                                                                  
+[   70.010578] usb 1-1.3: New USB device strings: Mfr=1, Product=2, SerialNumber
+=0                                                                              
+[   70.018016] usb 1-1.3: Product: LED_USB HID Demo                             
+[   70.022756] usb 1-1.3: Manufacturer: Microchip Technology Inc.               
+[   70.029774] usbled 1-1.3:1.0: led_probe() function is called.                
+[   70.035669] usbled 1-1.3:1.0: endpoint size is (64)                          
+[   70.040707] usbled 1-1.3:1.0: endpoint number is (1)                         
+[   70.045769] usbled 1-1.3:1.0: endpoint in address is (129)                   
+[   70.051426] usbled 1-1.3:1.0: endpoint out address is (1)                    
+[   70.056979] usb 1-1.3: int_in_urb submitted                                  
+                                                                                
+root@raspberrypi:/home# cd /sys/bus/usb/devices/1-1.3:1.0                       
+root@raspberrypi:/sys/bus/usb/devices/1-1.3:1.0# ls                             
+authorized         bInterfaceProtocol  ep_01     power                          
+bAlternateSetting  bInterfaceSubClass  ep_81     subsystem                      
+bInterfaceClass    bNumEndpoints       led       supports_autosuspend           
+bInterfaceNumber   driver              modalias  uevent                         
+root@raspberrypi:/sys/bus/usb/devices/1-1.3:1.0# echo 1 > led                   
+[  109.079490] usbled 1-1.3:1.0: led_store() function is called.                
+[  109.085346] usb 1-1.3: led = 1                                               
+root@raspberrypi:/sys/bu[  109.090773] usb 1-1.3: led_urb_out_callback() functio
+n is called.                                                                    
+s/usb/devices/1-1.3:1.0# echo 2 > led                                           
+[  123.729347] usbled 1-1.3:1.0: led_store() function is called.                
+[  123.735198] usb 1-1.3: led = 2                                               
+root@raspberrypi[  123.739776] usb 1-1.3: led_urb_out_callback() function is cal
+led.                                                                            
+:/sys/bus/usb/devices/1-1.3:1.0# echo 3 > led                                   
+[  128.239366] usbled 1-1.3:1.0: led_store() function is called.                
+[  128.245220] usb 1-1.3: led = 3                                               
+root@raspberrypi[  128.249772] usb 1-1.3: led_urb_out_callback() function is cal
+led.                                                                            
+:/sys/bus/usb/devices/1-1.3:1.0#                                                
+root@raspberrypi:/sys/bus/usb/devices/1-1.3:1.0# echo 0 > led                   
+[  168.379348] usbled 1-1.3:1.0: led_store() function is called.                
+[  168.385198] usb 1-1.3: read status                                           
+root@raspberrypi:/sys/bu[  168.390791] usb 1-1.3: led_urb_out_callback() functio
+n is called.                                                                    
+s/usb/de[  168.397685] usb 1-1.3: led_urb_in_callback() function is called.     
+vices/1-[  168.404323] switch is OFF.                                           
+1.3:1.0#                                                                        
+root@raspberrypi:/sys/bus/usb/devices/1-1.3:1.0# echo 0 > led                   
+[  189.239362] usbled 1-1.3:1.0: led_store() function is called.                
+[  189.245220] usb 1-1.3: read status                                           
+root@raspberrypi:/sys/bu[  189.250775] usb 1-1.3: led_urb_out_callback() functio
+n is called.                                                                    
+s/usb/de[  189.257759] usb 1-1.3: led_urb_in_callback() function is called.     
+vices/1-[  189.264428] switch is ON.                                            
+1.3:1.0#                                                                        
+root@raspberrypi:/sys/bus/usb/devices/1-1.3:1.0# cd /home/                      
+root@raspberrypi:/home# rmmod usb_urb_int_led.ko                                
+[  205.173501] usbcore: deregistering interface driver usbled                   
+[  205.179238] usb 1-1.3: led_urb_in_callback() function is called.             
+[  205.185326] switch is ON.                                                    
+[  205.187998] usb 1-1.3: Couldn't submit interrupt_in_urb -2                   
+[  205.194413] usbled 1-1.3:1.0: USB LED now disconnected                       
+root@raspberrypi:/home# 
+
+
+
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent               
+permitted by applicable law.                                                    
+pi@raspberrypi:~$ su                                                            
+Contraseña:                                                                     
+root@raspberrypi:/home/pi# cd /home/                                            
+root@raspberrypi:/home# i2cdetect -l                                            
+i2c-1   i2c             bcm2835 (i2c@7e804000)                  I2C adapter     
+root@raspberrypi:/home# insmod usb_ltc3206.ko                                   
+[   63.687329] usb_ltc3206: loading out-of-tree module taints kernel.           
+[   63.699657] usbcore: registered new interface driver usb-ltc3206             
+root@raspberrypi:/home# [   79.859072] usb 1-1.3: new full-speed USB device numb
+er 4 using dwc_otg                                                              
+[   79.992095] usb 1-1.3: New USB device found, idVendor=04d8, idProduct=003f, b
+cdDevice= 1.00                                                                  
+[   80.000634] usb 1-1.3: New USB device strings: Mfr=1, Product=2, SerialNumber
+=0                                                                              
+[   80.008081] usb 1-1.3: Product: USB to I2C demo                              
+[   80.012740] usb 1-1.3: Manufacturer: Microchip Technology Inc.               
+[   80.023235] usb-ltc3206 1-1.3:1.0: ltc3206_probe() function is called.       
+[   80.029973] usb-ltc3206 1-1.3:1.0: LTC3206 at USB bus 001 address 004 -- ltc3
+206_init()                                                                      
+[   80.038124] usb-ltc3206 1-1.3:1.0: ltc3206_init: Success                     
+[   80.044899] usb-ltc3206 1-1.3:1.0: ltc3206_probe() -> chip connected -> Succe
+ss                                                                              
+                                                                                
+root@raspberrypi:/home# i2cdetect -l                                            
+i2c-1   i2c             bcm2835 (i2c@7e804000)                  I2C adapter     
+i2c-11  i2c             usb-ltc3206 at bus 001 device 004       I2C adapter     
+root@raspberrypi:/home# cd /sys/bus/usb/devices/1-1.3:1.0                       
+root@raspberrypi:/sys/bus/usb/devices/1-1.3:1.0# ls                             
+authorized         bInterfaceProtocol  ep_01     power                          
+bAlternateSetting  bInterfaceSubClass  ep_81     subsystem                      
+bInterfaceClass    bNumEndpoints       i2c-11    supports_autosuspend           
+bInterfaceNumber   driver              modalias  uevent                         
+root@raspberrypi:/sys/bus/usb/devices/1-1.3:1.0# i2cset -y 11 0x1b 0x00 0xf0 0x0
+0 i                                                                             
+[  211.370171] number of i2c msgs is = 1                                        
+[  211.373902] oubuffer[0] = 0                                                  
+[  211.376770] oubuffer[1] = 240                                                
+[  211.379864] oubuffer[2] = 0                                                  
+root@raspberrypi:/sys/bus/usb/devices/1-1.3:1.0# i2cset -y 11 0x1b 0xf0 0x00 0x0
+0 i                                                                             
+[  267.834590] number of i2c msgs is = 1                                        
+[  267.838352] oubuffer[0] = 240                                                
+[  267.841515] oubuffer[1] = 0                                                  
+[  267.844352] oubuffer[2] = 0                                                  
+root@raspberrypi:/sys/bus/usb/devices/1-1.3:1.0# i2cset -y 11 0x1b 0x00 0x0f 0x0
+f i                                                                             
+[  327.694650] number of i2c msgs is = 1                                        
+[  327.698380] oubuffer[0] = 0                                                  
+[  327.701289] oubuffer[1] = 15                                                 
+[  327.704239] oubuffer[2] = 15                                                 
+root@raspberrypi:/sys/bus/usb/devices/1-1.3:1.0# cd ~/home                      
+bash: cd: /root/home: No existe el fichero o el directorio                      
+root@raspberrypi:/sys/bus/usb/devices/1-1.3:1.0# cd /home/                      
+root@raspberrypi:/home# rmmod usb_led.ko                                        
+rmmod: ERROR: Module usb_led is not currently loaded                            
+root@raspberrypi:/home# rmmod usb_ltc3206.ko                                    
+[  370.123387] usbcore: deregistering interface driver usb-ltc3206              
+root@raspberrypi:/home# [  370.130826] i2c-ltc3206(disconnect) -> chip disconnec
+ted                                                                             
+[  384.456993] usb 1-1.3: USB disconnect, device number 4                       
+                                                                                
+root@raspberrypi:/home# 
+

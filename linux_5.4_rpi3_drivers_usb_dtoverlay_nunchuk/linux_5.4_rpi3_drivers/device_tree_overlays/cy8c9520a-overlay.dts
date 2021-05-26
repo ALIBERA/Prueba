@@ -1,0 +1,65 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "brcm,bcm2835";
+
+	fragment@0 {
+		target =<&gpio>;
+		__overlay__ {
+			accel_int_pin: accel_int_pin {
+				brcm,pins = <23>;
+				brcm,function = <0>;	/* Input */
+				brcm,pull = <0>; 	/* none */
+			};
+		};
+	};
+
+	fragment@1 {
+		target = <&i2c1>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			status = "okay";
+			
+			cy8c9520a: cy8c9520a@20 {
+				compatible = "cy8c9520a";
+				reg = <0x20>;
+				interrupt-controller;
+				#interrupt-cells = <2>;
+				gpio-controller;
+				#gpio-cells = <2>;
+			
+				interrupts = <23 1>; 
+				interrupt-parent = <&gpio>;
+		
+				#pwm-cells = <2>;
+				pwm0 = <20>; // pwm not supported
+				pwm1 = <3>;
+				pwm2 = <20>; // pwm not supported
+				pwm3 = <2>;
+
+				pinctrl-names = "default";
+				pinctrl-0 = <&accel_int_pin &cy8c9520apullups &cy8c9520apulldowns &cy8c9520adrivestrength>;
+		
+				cy8c9520apullups: pinmux1 {
+					pins = "gpio0", "gpio1";
+					bias-pull-up;
+				};
+
+				cy8c9520apulldowns: pinmux2 {
+					pins = "gpio2";
+					bias-pull-down;
+				};
+
+				/* pwm channel */
+				cy8c9520adrivestrength: pinmux3 {
+					pins = "gpio3";
+					drive-strength;
+				};
+			};
+	
+		};
+	};
+};
+
